@@ -1,0 +1,129 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        table {
+            font-size: 16px;
+            width: 100%;
+        }
+
+        table th:nth-child(even),
+        table td:nth-child(even) {
+            background-color: rgb(209, 209, 209);
+        }
+
+        table tr th.head {
+            background-color: red;
+            color: white;
+
+            width: 210px;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
+
+        table tr th {
+            padding: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        table tr td {
+            padding: 20px;
+            text-align: center;
+        }
+
+        table tr td.area {
+            font-size: 20px;
+            color: black;
+            font-weight: bolder;
+        }
+
+        table tr td p {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            padding: 5px;
+            margin-left: 5px;
+        }
+
+        .button {
+            display: flex;
+        }
+
+        button {
+            margin: 10px;
+            background-color: red;
+            color: white;
+            margin-top: 25px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        require(['jquery', 'jquery/ui'], function($) {
+            $(document).ready(function() {
+                $(".show").click(function() {
+                    $("table").show();
+                });
+
+                $(".hide").click(function() {
+                    $("table").hide();
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="button">
+        <button class="show">Show Size Chart</button>
+
+        <button class="hide">Hide Size Chart</button>
+    </div>
+
+    <br />
+
+    <h1>MEN & UNISEX SIZE CHART</h1>
+
+    <br />
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>HEIGHT</th>
+                <th>WEIGHT</th>
+                <th>PRODUCT PRICE</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php /** @var Magento2\HelloWorld\Block\Helloworld $block */ ?>
+            <?php $helloworldCollection = $block->getCollection(); ?>
+            <?php if (count($helloworldCollection)) { ?>
+                <?php foreach ($helloworldCollection as $post) : ?>
+                    <tr>
+                        <th><?php echo $post->getId(); ?></th>
+                        <td><?php echo $post->getHeight(); ?></td>
+                        <td><?php echo $post->getWeight(); ?></td>
+                        <td><?php echo $post->getProductPrice(); ?></td>
+                    </tr>
+
+                <?php endforeach; ?>
+            <?php } ?>
+        </tbody>
+    </table>
+</body>
